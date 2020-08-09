@@ -78,15 +78,15 @@
     async function getFriendship() {
       const friend = await liff.getFriendship()
       document.getElementById("friendship").append(friend.friendFlag)
-      if(!friend.friendFlag) {
-        if(confirm("คุณยังไม่ได้เพิ่ม บอท เป็นเพื่อน จะเพิ่มเลยไหมฦ")) {
+      if (!friend.friendFlag) {
+        if (confirm("คุณยังไม่ได้เพิ่ม บอท เป็นเพื่อน จะเพิ่มเลยไหมฦ")) {
           window.location = "https://line.me/R/ti/p/@975baimg"
         }
       }
     }
 
     async function sendMsg() {
-      if(liff.getContext().type !== "none"){
+      if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
             "type": "sticker",
@@ -133,11 +133,14 @@
 
     async function main() {
       await liff.init({ liffId: "1654657887-RqVX0JjN" })
-      getEnvironment()
-      getUserProfile()
-      getContext()
-      $("#os").append(" - >> Pongsathon test jquery.")
-      getFriendship()
+      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+      if (liff.isLoggedIn()) {
+        getEnvironment()
+        getUserProfile()
+        getContext()
+        $("#os").append(" - >> Pongsathon test jquery.")
+        getFriendship()
+      }
       // createUniversalLink()
     }
     main()
